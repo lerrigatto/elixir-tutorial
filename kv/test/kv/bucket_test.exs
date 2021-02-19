@@ -19,7 +19,7 @@ defmodule KV.BucketTest do
     KV.Bucket.put(bucket, "milk", 7)
     assert KV.Bucket.get(bucket, "milk") == 7
   end
-  
+
   test "remove value by key", %{bucket: bucket} do
     assert KV.Bucket.get(bucket, "milk") == nil
     assert KV.Bucket.get(bucket, "eggs") == nil
@@ -33,5 +33,4 @@ defmodule KV.BucketTest do
   test "buckets are temporary workers" do
     assert Supervisor.child_spec(KV.Bucket, []).restart == :temporary
   end
-
 end
