@@ -27,7 +27,6 @@ defmodule KVServer.Command do
   Unknown commands or commands with the wrong number of arguments will return an error:
     iex> KVServer.Command.parse("UNKNOWN shopping stuff \r\n")
     {:error, :unknown_command}
-
     iex> KVServer.Command.parse("GET shopping \r\n")
     {:error, :unknown_command}
 
