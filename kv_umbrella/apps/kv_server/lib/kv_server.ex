@@ -2,14 +2,15 @@ defmodule KVServer do
   require Logger
 
   def accept(port) do
-    
     # The following line open a tcp listener with the following options:
     # `:binary` - receives data as binaries, instead of lists
     # `packet: :line` - receives data live by line
     # `active: false` - blocks on `:gen_tcp.recv/2` until data is available
     # `reuseaddr: true` - reuse an address if the listener crashes
     #
-    {:ok, socket} = :gen_tcp.listen(port, [:binary, packet: :line, active: false, reuseaddr: true])
+    {:ok, socket} =
+      :gen_tcp.listen(port, [:binary, packet: :line, active: false, reuseaddr: true])
+
     Logger.info("Accepting connections on port #{port}")
     loop_acceptor(socket)
   end
@@ -37,5 +38,4 @@ defmodule KVServer do
   defp write_line(line, socket) do
     :gen_tcp.send(socket, line)
   end
-
 end

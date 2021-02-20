@@ -30,10 +30,10 @@ defmodule KV.RegistryTest do
     KV.Registry.create(registry, "shopping")
     {:ok, bucket} = KV.Registry.lookup(registry, "shopping")
     Agent.stop(bucket, :crashme)
-    
+
     # Do a useless call to ensure the registry processes our request
     _ = KV.Registry.create(registry, "bogus")
-    
+
     assert KV.Registry.lookup(registry, "shopping") == :error
   end
 
@@ -43,6 +43,6 @@ defmodule KV.RegistryTest do
 
     Agent.stop(bucket, :crash)
 
-    catch_exit KV.Bucket.put(bucket, "eggs", 3)
+    catch_exit(KV.Bucket.put(bucket, "eggs", 3))
   end
 end
