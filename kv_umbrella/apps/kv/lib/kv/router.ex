@@ -29,9 +29,10 @@ defmodule KV.Router do
   end
 
   @doc """
-  The mock routing table.
+  The routing table.
   """
   def table do
-    [{?a..?m, :"foo@POLOBEAR-DEB"}, {?n..?z, :"bar@POLOBEAR-DEB"}]
+    Application.fetch_env!(:kv, :routing_table)
+    # [{?a..?m, :"node1@POLOBEAR-DEB"}, {?n..?z, :"node2@POLOBEAR-DEB"}]
   end
 end
